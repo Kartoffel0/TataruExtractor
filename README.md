@@ -1,10 +1,26 @@
 # Tataru Helper
 
-[![Current Version](https://img.shields.io/github/release/NightlyRevenger/TataruHelper)](https://github.com/NightlyRevenger/TataruHelper/releases) ![GitHub Releases (by Asset)](https://img.shields.io/github/downloads/NightlyRevenger/TataruHelper/latest/TataruHelper-0.9.106-delta.nupkg?label=Downloads)  [![Crowdin](https://badges.crowdin.net/tataru-helper/localized.svg)](https://crowdin.com/project/tataru-helper) <a href="https://discord.gg/bSrpbd9">
-        <img src="https://img.shields.io/discord/592039000538349569?logo=discord"
-            alt="chat on Discord"></a>
+A TataruHelper fork with a "Clipboard" translation engine and no auto updates.
 
+This only exists because there was an update for TataruHelper which overwrote a fork I was using.
+That fork, which was named TataruStudy, did basically the same thing this one does but it is now unavailable.
 
+### Installation and usage
+
+1. Download and extract the latest [release.zip](https://github.com/Kartoffel0/TataruExtractor/releases/latest).
+2. Run TataruHelper.exe.
+3. Add a translation window.
+4. On the Translation Settings tab: Select "Clipboard" as the Translation Engine, FF language and Translate To can be set to anything as they do nothing.
+5. On the Behavior tab: Untick Always On Top, not necessary but recommended as the Translation Window will only display "Copied to Clipboard \<timestamp\>: Copied Text".
+
+![Screenshot](https://i.imgur.com/DW4FsHZ.png)
+
+# Original README below
+---
+---
+---
+---
+---
 [Download Now](https://github.com/NightlyRevenger/TataruHelper/releases/latest/download/Setup.exe)( \---> Download Setup.exe)
 -
 [Tataru's Discord Server](https://discord.gg/bSrpbd9)  
