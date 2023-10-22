@@ -8,7 +8,7 @@ using Translation;
 
 namespace FFXIVTataruHelper.Utils
 {
-    class LoggerWrapper : ILog, Updater.ILog
+    class LoggerWrapper : ILog
     {
         public LoggerWrapper() { }
 

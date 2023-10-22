@@ -32,5 +32,7 @@ namespace Translation
         public static string YandexUsersFile = "TranslationResources/YandexUsers.json";
 
         public static string YandexEncoderPath = "TranslationResources/YandexEncoder";
+
+        public static string ClipboardLanguages = "TranslationResources/ClipboardLanguages.json";
     }
 }

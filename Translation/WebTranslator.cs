@@ -14,6 +14,8 @@ using Translation.Google;
 using Translation.Yandex;
 using Translation.Utils;
 
+using TextCopy;
+
 namespace Translation
 {
     public class WebTranslator
@@ -78,7 +80,8 @@ namespace Translation
                 GlobalTranslationSettings.DeeplLanguages,
                 GlobalTranslationSettings.YandexLanguages,
                 GlobalTranslationSettings.PapagoLanguages,
-                GlobalTranslationSettings.BaiduLanguages);
+                GlobalTranslationSettings.BaiduLanguages,
+                GlobalTranslationSettings.ClipboardLanguages);
         }
 
         public async Task<string> TranslateAsync(string inSentence, TranslationEngine translationEngine, TranslatorLanguague fromLang, TranslatorLanguague toLang)
@@ -98,7 +101,7 @@ namespace Translation
 
             if (fromLang.SystemName == "Auto")
             {
-                if (translationEngine.EngineName != TranslationEngineName.GoogleTranslate)
+                if (translationEngine.EngineName != TranslationEngineName.GoogleTranslate || translationEngine.EngineName != TranslationEngineName.Clipboard)
                 {
                     var dLang = _LanguageDetector.TryDetectLanguague(inSentence);
                     if (dLang.Length > 1)
@@ -131,7 +134,7 @@ namespace Translation
             TranslationRequest translationRequest = new TranslationRequest(inSentence, translationEngine.EngineName, fromLang.LanguageCode, toLang.LanguageCode);
             var cachedResult = transaltionCache.FirstOrDefault(x => x.Key == translationRequest);
 
-            if (!cachedResult.Equals(defaultCachedResult))
+            if (!cachedResult.Equals(defaultCachedResult) && translationEngine.EngineName != TranslationEngineName.Clipboard)
             {
                 return cachedResult.Value;
             }
@@ -171,6 +174,11 @@ namespace Translation
                         result = BaiduTranslate(inSentence, fromLangCode, toLangCode);
                         break;
                     }
+                case TranslationEngineName.Clipboard:
+                    {
+                        result = CopyToClipboard(inSentence);
+                        break;
+                    }
                 default:
                     {
                         result = String.Empty;
@@ -193,13 +201,16 @@ namespace Translation
             return result;
         }
 
-        private void LoadLanguages(string glTrPath, string deepPath, string YaTrPath, string PapagoTrPath, string baiduTrPath)
+        private void LoadLanguages(string glTrPath, string deepPath, string YaTrPath, string PapagoTrPath, string baiduTrPath, string clipboardPath)
         {
             try
             {
                 List<TranslationEngine> tmptranslationEngines = new List<TranslationEngine>();
                 var tmpList = Helper.LoadJsonData<List<TranslatorLanguague>>(glTrPath, _Logger);
                 tmptranslationEngines.Add(new TranslationEngine(TranslationEngineName.GoogleTranslate, tmpList, 9));
+
+                tmpList = Helper.LoadJsonData<List<TranslatorLanguague>>(clipboardPath);
+                tmptranslationEngines.Add(new TranslationEngine(TranslationEngineName.Clipboard, tmpList, 11));
 
                 tmpList = Helper.LoadJsonData<List<TranslatorLanguague>>(deepPath, _Logger);
                 tmptranslationEngines.Add(new TranslationEngine(TranslationEngineName.DeepL, tmpList, 10));
@@ -291,6 +302,12 @@ namespace Translation
             }
 
             return result;
+        }
+
+        private string CopyToClipboard(string sentence)
+        {
+            TextCopy.ClipboardService.SetText(sentence);
+            return $"Copied to clipboard {DateTime.Now.ToString()}: {sentence}";
         }
 
         private string PreprocessSentence(string sentence)

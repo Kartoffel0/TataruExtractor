@@ -19,6 +19,7 @@ namespace Translation
         Amazon = 4,
         Papago = 5,
         Baidu = 6,
+        Clipboard = 7,
     }
 
     public class TranslationEngine : IEquatable<TranslationEngine>

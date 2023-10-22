@@ -1,0 +1,12 @@
+[
+  {
+    "ShownName": "Auto",
+    "SystemName": "Auto",
+    "LanguageCode": "auto"
+  },
+  {
+    "ShownName": "Clipboard",
+    "SystemName": "Clipboard",
+    "LanguageCode": "cp"
+  }
+]

@@ -61,7 +61,6 @@
                 </MenuItem>
                 <MenuItem Header="{DynamicResource DockHelp}" Grid.Column="1">
                     <MenuItem Header="{DynamicResource DockAbout}"  Click="About_Click"/>
-                    <MenuItem x:Name="CheckUpdatesButton" Header="{DynamicResource CheckUpdatesText}"  Click="CheckUpdates_Click"/>
                 </MenuItem>
                 <MenuItem Header="{DynamicResource DockPatrons}" Click="Patrons_Click" Background="#FFF96854" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,55,0"/>
                 <MenuItem Header="{DynamicResource DockDiscrod}" Click="Discord_Click" Background="#FF313138" Foreground="White" HorizontalAlignment="Right" Grid.Column="2"/>
@@ -69,28 +68,6 @@
             <Border BorderThickness="0,1,0,0" BorderBrush="LightGray"/>
         </DockPanel>
 
-        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="110,1,0,0" Height="46" Visibility="{Binding UpdatingBlockVisiblity,Converter={utils:BooleanToVisibilityConverterCollapse}, Mode=OneWay, FallbackValue=Collapsed}">
-            <WrapPanel Margin="0,0,10,0" Visibility="{Binding UserStartedUpdateTextVisibility, Converter={utils:BooleanToVisibilityConverterCollapse}, Mode=OneWay}">
-                <TextBlock x:Name="UserStartedUpdateText" Text=""/>
-            </WrapPanel>
-            <WrapPanel Visibility="{Binding DownloadingUpdateVisibility,Converter={utils:BooleanToVisibilityConverterCollapse}, Mode=OneWay}">
-                <TextBlock Text="{DynamicResource DownloadingUpdate}"/>
-                <Grid Margin="5,2,0,0">
-                    <utils:CircularProgressBar x:Name="progressBar"
-                             DockPanel.Dock="Left"
-                             VerticalAlignment="Top"
-                                           Height="45"
-                                           Width="45">
-                    </utils:CircularProgressBar>
-                    <Grid.RenderTransform>
-                        <ScaleTransform ScaleX="0.3" ScaleY="0.3" />
-                    </Grid.RenderTransform>
-                </Grid>
-            </WrapPanel>
-            <WrapPanel Margin="0,0,10,0" Visibility="{Binding RestartReadyVisibility,Converter={utils:BooleanToVisibilityConverterCollapse}, Mode=OneWay}">
-                <TextBlock Text="{DynamicResource UpdateInstalled}" Cursor="Hand" TextDecorations="Underline" PreviewMouseDown="RestartApp_Click"/>
-            </WrapPanel>
-        </WrapPanel>
 
         <Label Content="{DynamicResource FFStatusLable}" Width="66" Height="31" Margin="10,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label x:Name="FFStatusText" Content="{DynamicResource FFStatusText}" Height="31" Margin="81,26,10,0" VerticalAlignment="Top"/>

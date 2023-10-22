@@ -334,10 +334,6 @@
       <Project>{37de7a36-75aa-475f-bc99-4d1b852a3ff2}</Project>
       <Name>Translation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Updater\Updater.csproj">
-      <Project>{6d24e824-953e-4112-952e-dceef54b8b0f}</Project>
-      <Name>Updater</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WpfXamlExtensions\WpfXamlExtensions.csproj">
       <Project>{e3e58614-50b3-4028-affa-da1369de4cb9}</Project>
       <Name>WpfXamlExtensions</Name>
